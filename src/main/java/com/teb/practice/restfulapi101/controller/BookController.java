@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teb.practice.restfulapi101.bean.Book;
-import com.teb.practice.restfulapi101.exception.BookNotFoundException;
 import com.teb.practice.restfulapi101.service.BookService;
 
 @RestController
@@ -36,9 +35,6 @@ public class BookController {
 	@GetMapping("/books/{bookId}")
 	public Book getBookById(@PathVariable String bookId) {
 		Book bookToLookup = bookService.listBookById(bookId);
-		if (bookToLookup == null) {
-			throw new BookNotFoundException("Book ID: ".concat(bookId.toUpperCase()));
-		}
 		return bookToLookup;
 	}
 
@@ -50,18 +46,12 @@ public class BookController {
 	@PatchMapping("/books/{bookId}")
 	public Book updateOldBook(@PathVariable String bookId, @RequestBody Book book) {
 		Book bookToUpdate = bookService.updateBook(bookId, book);
-		if (bookToUpdate == null) {
-			throw new BookNotFoundException("Book ID: ".concat(bookId.toUpperCase()));
-		}
 		return bookToUpdate;
 	}
 
 	@DeleteMapping("/books/{bookId}")
 	public Book deleteOldBook(@PathVariable String bookId) {
 		Book bookToDelete = bookService.removeBook(bookId);
-		if (bookToDelete == null) {
-			throw new BookNotFoundException("Book ID: ".concat(bookId.toUpperCase()));
-		}
 		return bookToDelete;
 	}
 }
