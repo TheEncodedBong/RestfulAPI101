@@ -15,7 +15,7 @@ public class Book {
 	@Size(min = 10, max = 20, message = "Author name should be between 10 to 20 characters.")
 	private String bookAuthor;
 
-	/* For early versions of Springboot, add a manual no-argument constructor */
+	/* For early versions of Spring-boot, add a manual no-argument constructor */
 	public Book(String bookId, String bookName, String bookAuthor) {
 		super();
 		this.bookId = bookId;
